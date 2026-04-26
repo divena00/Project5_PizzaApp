@@ -19,6 +19,8 @@
 
         <activity android:name=".StoreOrdersActivity" />
 
+        <activity android:name=".BuildYourOwnActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

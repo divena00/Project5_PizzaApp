@@ -3,6 +3,7 @@ package com.example.project5_pizzaapp;
 
 import android.os.Bundle;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -79,8 +80,10 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
                     break;
 
                 case "NY Build Your Own":
-                    pizza = new NYPizza().createBuildYourOwn();
-                    break;
+                    Intent nyIntent = new Intent(this, BuildYourOwnActivity.class);
+                    nyIntent.putExtra("style", "NY");
+                    startActivity(nyIntent);
+                    return;
 
                 // Chicago Style
                 case "Chicago Deluxe":
@@ -96,8 +99,10 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
                     break;
 
                 case "Chicago Build Your Own":
-                    pizza = new ChicagoPizza().createBuildYourOwn();
-                    break;
+                    Intent chicagoIntent = new Intent(this, BuildYourOwnActivity.class);
+                    chicagoIntent.putExtra("style", "Chicago");
+                    startActivity(chicagoIntent);
+                    return;
 
                 default:
                     Toast.makeText(this, "Unknown pizza", Toast.LENGTH_SHORT).show();
