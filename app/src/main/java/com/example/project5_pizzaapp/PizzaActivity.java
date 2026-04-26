@@ -1,4 +1,4 @@
-package com.example.project5;
+package com.example.project5_pizzaapp;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,15 +6,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.project5_pizzaapp.BBQChicken;
-import com.example.project5_pizzaapp.BuildYourOwn;
-import com.example.project5_pizzaapp.Deluxe;
-import com.example.project5_pizzaapp.Meatzza;
-import com.example.project5_pizzaapp.OrderManager;
-import com.example.project5_pizzaapp.Pizza;
-import com.example.project5_pizzaapp.PizzaAdapter;
-import com.example.project5_pizzaapp.PizzaItem;
 
 import java.util.ArrayList;
 
@@ -52,7 +43,6 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
 
         pizzaList.add(new PizzaItem("Deluxe", R.drawable.deluxe));
         pizzaList.add(new PizzaItem("BBQ Chicken", R.drawable.bbq_chicken));
-        pizzaList.add(new PizzaItem("Hawaiian", R.drawable.hawaiian));
         pizzaList.add(new PizzaItem("Meatzza", R.drawable.meatzza));
         pizzaList.add(new PizzaItem("Build Your Own", R.drawable.build_your_own));
     }
