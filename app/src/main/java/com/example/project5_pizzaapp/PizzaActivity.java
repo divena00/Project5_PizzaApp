@@ -41,10 +41,17 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
     private void loadPizzas() {
         pizzaList = new ArrayList<>();
 
-        pizzaList.add(new PizzaItem("Deluxe", R.drawable.deluxe));
-        pizzaList.add(new PizzaItem("BBQ Chicken", R.drawable.bbq_chicken));
-        pizzaList.add(new PizzaItem("Meatzza", R.drawable.meatzza));
-        pizzaList.add(new PizzaItem("Build Your Own", R.drawable.build_your_own));
+        // NY Style Pizzas
+        pizzaList.add(new PizzaItem("NY Deluxe", R.drawable.ny_deluxe));
+        pizzaList.add(new PizzaItem("NY BBQ Chicken", R.drawable.ny_bbq));
+        pizzaList.add(new PizzaItem("NY Meatzza", R.drawable.ny_meatzza));
+        pizzaList.add(new PizzaItem("NY Build Your Own", R.drawable.ny_byo));
+
+        // Chicago Style Pizzas
+        pizzaList.add(new PizzaItem("Chicago Deluxe", R.drawable.chicago_deluxe));
+        pizzaList.add(new PizzaItem("Chicago BBQ Chicken", R.drawable.chicago_bbq));
+        pizzaList.add(new PizzaItem("Chicago Meatzza", R.drawable.chicago_meatzza));
+        pizzaList.add(new PizzaItem("Chicago Build Your Own", R.drawable.chicago_byo));
     }
 
     /**
