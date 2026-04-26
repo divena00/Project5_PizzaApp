@@ -14,7 +14,7 @@ public class BuildYourOwn extends Pizza {
      * Constructs a BuildYourOwn pizza with no toppings initially.
      * The user can add or remove toppings through the controller.
      */
-    BuildYourOwn(){
+    public BuildYourOwn(){
     }
     /**
      * Returns a string representation of the Build Your Own pizza.

@@ -8,7 +8,7 @@ package com.example.project5_pizzaapp;
  * @author Ishani Rajeshirke
  */
 public class BBQChicken extends Pizza {
-    BBQChicken(){
+    public BBQChicken(){
         addTopping(Topping.BBQChicken);
         addTopping(Topping.greenpepper);
         addTopping(Topping.provolone);

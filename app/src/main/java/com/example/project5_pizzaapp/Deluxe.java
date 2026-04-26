@@ -13,7 +13,7 @@ public class Deluxe extends Pizza {
      * Constructs a Deluxe pizza and initializes it with
      * its default set of toppings.
      */
-    Deluxe(){
+    public Deluxe(){
         addTopping(Topping.sausage);
         addTopping(Topping.pepperoni);
         addTopping(Topping.greenpepper);

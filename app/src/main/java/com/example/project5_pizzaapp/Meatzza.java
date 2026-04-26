@@ -13,7 +13,7 @@ public class Meatzza extends Pizza {
      * Constructs a Meatzza pizza and initializes it with
      * its default set of toppings.
      */
-    Meatzza(){
+    public Meatzza(){
         addTopping(Topping.sausage);
         addTopping(Topping.pepperoni);
         addTopping(Topping.beef);
