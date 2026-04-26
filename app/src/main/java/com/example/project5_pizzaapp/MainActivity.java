@@ -1,4 +1,4 @@
-package com.example.project5;
+package com.example.project5_pizzaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
