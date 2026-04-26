@@ -1,5 +1,6 @@
 package com.example.project5_pizzaapp;
 
+
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -62,21 +63,42 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
         try {
             Pizza pizza;
 
-            // Create pizza based on selection
             switch (item.getName()) {
-                case "Deluxe":
-                    pizza = new Deluxe();
-                    break;
-                case "BBQ Chicken":
-                    pizza = new BBQChicken();
+
+                // NY Style
+                case "NY Deluxe":
+                    pizza = new NYPizza().createDeluxe();
                     break;
 
-                case "Meatzza":
-                    pizza = new Meatzza();
+                case "NY BBQ Chicken":
+                    pizza = new NYPizza().createBBQChicken();
                     break;
-                case "Build Your Own":
-                    pizza = new BuildYourOwn();
+
+                case "NY Meatzza":
+                    pizza = new NYPizza().createMeatzza();
                     break;
+
+                case "NY Build Your Own":
+                    pizza = new NYPizza().createBuildYourOwn();
+                    break;
+
+                // Chicago Style
+                case "Chicago Deluxe":
+                    pizza = new ChicagoPizza().createDeluxe();
+                    break;
+
+                case "Chicago BBQ Chicken":
+                    pizza = new ChicagoPizza().createBBQChicken();
+                    break;
+
+                case "Chicago Meatzza":
+                    pizza = new ChicagoPizza().createMeatzza();
+                    break;
+
+                case "Chicago Build Your Own":
+                    pizza = new ChicagoPizza().createBuildYourOwn();
+                    break;
+
                 default:
                     Toast.makeText(this, "Unknown pizza", Toast.LENGTH_SHORT).show();
                     return;
