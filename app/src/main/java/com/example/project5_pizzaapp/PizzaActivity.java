@@ -1,9 +1,9 @@
 package com.example.project5_pizzaapp;
 
-
-import android.os.Bundle;
-import android.widget.Toast;
 import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,15 +20,19 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
     private RecyclerView recyclerView;
     private PizzaAdapter adapter;
     private ArrayList<PizzaItem> pizzaList;
+    private Button btnBack; // Back button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza);
 
-        recyclerView = findViewById(R.id.recyclerViewPizza);
+        // Back button
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
-        // Grid layout (2 columns looks nice)
+        // RecyclerView
+        recyclerView = findViewById(R.id.recyclerViewPizza);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         loadPizzas();
