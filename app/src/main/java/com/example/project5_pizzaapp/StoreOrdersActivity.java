@@ -16,8 +16,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
 
     private Spinner spinnerOrders;
     private TextView textOrderDetails;
-    private Button btnCancelOrder;
-
+    private Button btnCancelOrder,btnBack;
     private ArrayAdapter<Integer> spinnerAdapter;
     private ArrayList<Integer> orderNumbers;
 
@@ -29,6 +28,11 @@ public class StoreOrdersActivity extends AppCompatActivity {
         spinnerOrders = findViewById(R.id.spinnerOrders);
         textOrderDetails = findViewById(R.id.textOrderDetails);
         btnCancelOrder = findViewById(R.id.btnCancelOrder);
+        btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(view -> {
+            finish();
+        });
 
         loadOrders();
 

@@ -115,16 +115,38 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
                     return;
             }
 
+            String[] sizes = {"Small", "Medium", "Large"};
+            final int[] selectedSizeIndex = {0}; // default selection
+
             new AlertDialog.Builder(this)
-                    .setTitle("Add Pizza")
-                    .setMessage("Do you want to add " + item.getName() + " to your order?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        OrderManager.getInstance().getCurrentOrder().addPizza(pizza);
-                        Toast.makeText(this, item.getName() + " added!", Toast.LENGTH_SHORT).show();
+                    .setTitle("Select Size for " + item.getName())
+                    .setSingleChoiceItems(sizes, 0, (dialog, which) -> {
+                        selectedSizeIndex[0] = which;
                     })
-                    .setNegativeButton("No", (dialog, which) -> {
-                        dialog.dismiss();
+                    .setPositiveButton("Add to Order", (dialog, which) -> {
+
+                        // Set size based on selection
+                        switch (selectedSizeIndex[0]) {
+                            case 0:
+                                pizza.setSize(Size.small);
+                                break;
+                            case 1:
+                                pizza.setSize(Size.medium);
+                                break;
+                            case 2:
+                                pizza.setSize(Size.large);
+                                break;
+                        }
+
+                        OrderManager.getInstance()
+                                .getCurrentOrder()
+                                .addPizza(pizza);
+
+                        Toast.makeText(this,
+                                item.getName() + " (" + sizes[selectedSizeIndex[0]] + ") added!",
+                                Toast.LENGTH_SHORT).show();
                     })
+                    .setNegativeButton("Cancel", null)
                     .show();
 
         } catch (Exception e) {
