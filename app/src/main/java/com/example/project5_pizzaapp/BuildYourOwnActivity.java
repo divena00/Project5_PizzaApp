@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -96,10 +97,17 @@ public class BuildYourOwnActivity extends AppCompatActivity {
         for (Topping topping : selectedToppings) {
             pizza.addTopping(topping);
         }
-
-        OrderManager.getInstance().getCurrentOrder().addPizza(pizza);
-
-        Toast.makeText(this, "Build Your Own added", Toast.LENGTH_SHORT).show();
-        finish();
+        new AlertDialog.Builder(this)
+                .setTitle("Confirm Pizza")
+                .setMessage("Are you sure you want to add this pizza to your order?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    OrderManager.getInstance().getCurrentOrder().addPizza(pizza);
+                    Toast.makeText(this, "Build Your Own added", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
     }
 }
