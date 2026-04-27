@@ -7,7 +7,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 
@@ -33,7 +35,7 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
 
         // RecyclerView
         recyclerView = findViewById(R.id.recyclerViewPizza);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         loadPizzas();
 
@@ -113,10 +115,17 @@ public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnP
                     return;
             }
 
-            // Add to current order
-            OrderManager.getInstance().getCurrentOrder().addPizza(pizza);
-
-            Toast.makeText(this, item.getName() + " added!", Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(this)
+                    .setTitle("Add Pizza")
+                    .setMessage("Do you want to add " + item.getName() + " to your order?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        OrderManager.getInstance().getCurrentOrder().addPizza(pizza);
+                        Toast.makeText(this, item.getName() + " added!", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("No", (dialog, which) -> {
+                        dialog.dismiss();
+                    })
+                    .show();
 
         } catch (Exception e) {
             Toast.makeText(this, "Error adding pizza", Toast.LENGTH_SHORT).show();

@@ -16,7 +16,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
     private ListView listViewCurrentOrder;
     private TextView textSubtotal, textTax, textTotal;
-    private Button btnPlaceOrder;
+    private Button btnPlaceOrder, btnBack,btnRemovePizza;
 
     private ArrayAdapter<String> adapter;
     private ArrayList<String> pizzaStrings;
@@ -31,6 +31,9 @@ public class CurrentOrderActivity extends AppCompatActivity {
         textTax = findViewById(R.id.textTax);
         textTotal = findViewById(R.id.textTotal);
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
+        btnBack = findViewById(R.id.btnBack);
+        btnRemovePizza = findViewById(R.id.btnRemovePizza);
+        listViewCurrentOrder.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         loadCurrentOrder();
 
@@ -38,6 +41,26 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 showRemoveDialog(position));
 
         btnPlaceOrder.setOnClickListener(view -> placeOrder());
+        btnBack.setOnClickListener(v -> finish());
+        btnRemovePizza.setOnClickListener(v -> {
+            int position = listViewCurrentOrder.getCheckedItemPosition();
+
+            if (position == ListView.INVALID_POSITION) {
+                Toast.makeText(this, "Select a pizza to remove", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Pizza pizza = OrderManager.getInstance()
+                    .getCurrentOrder()
+                    .getPizzas()
+                    .get(position);
+
+            OrderManager.getInstance().getCurrentOrder().removePizza(pizza);
+
+            loadCurrentOrder();
+
+            Toast.makeText(this, "Pizza removed", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void loadCurrentOrder() {
@@ -47,7 +70,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
             pizzaStrings.add(pizza.toString());
         }
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pizzaStrings);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_single_choice, pizzaStrings);
         listViewCurrentOrder.setAdapter(adapter);
 
         updateTotals();
@@ -95,4 +118,5 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
         loadCurrentOrder();
     }
+
 }
