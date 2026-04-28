@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // Go to Store Orders Screen
         btnStoreOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

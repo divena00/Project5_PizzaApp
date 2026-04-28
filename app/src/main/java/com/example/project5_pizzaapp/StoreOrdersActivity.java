@@ -13,11 +13,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class StoreOrdersActivity extends AppCompatActivity {
+    /**
+     * StoreOrdersActivity displays all placed orders in the store.
+     * Users can:
+     * - View order details using a Spinner (dropdown list)
+     * - Cancel an existing order using an AlertDialog
+     * - Navigate back to the previous screen
+     * @author Divena Deshmukh
+     * @author Ishani Rajeshrike
+     */
 
+    /**
+     *  Dropdown list of order numbers
+     */
     private Spinner spinnerOrders;
+    /**
+     *   Displays selected order details
+     */
     private TextView textOrderDetails;
+    /**
+     *   Buttons for canceling and navigating back
+     */
     private Button btnCancelOrder,btnBack;
+    /**
+     *   Adapter for Spinner
+     */
     private ArrayAdapter<Integer> spinnerAdapter;
+    /**
+     *   List of order numbers
+     */
     private ArrayList<Integer> orderNumbers;
 
     @Override
@@ -35,7 +59,10 @@ public class StoreOrdersActivity extends AppCompatActivity {
         });
 
         loadOrders();
-
+        /**
+         * Listener for Spinner selection.
+         * When user selects an order number, display its details.
+         */
         spinnerOrders.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(android.widget.AdapterView<?> parent,
@@ -61,7 +88,10 @@ public class StoreOrdersActivity extends AppCompatActivity {
 
         btnCancelOrder.setOnClickListener(view -> showCancelDialog());
     }
-
+    /**
+     * Loads all store order numbers into the Spinner.
+     * Uses ArrayAdapter to bind data to the dropdown UI.
+     */
     private void loadOrders() {
         orderNumbers = OrderManager.getInstance()
                 .getStoreOrders()
@@ -83,7 +113,10 @@ public class StoreOrdersActivity extends AppCompatActivity {
             textOrderDetails.setText("No store orders available");
         }
     }
-
+    /**
+     * Displays a confirmation dialog to cancel the selected order.
+     * Removes the order if user confirms.
+     */
     private void showCancelDialog() {
         if (orderNumbers.isEmpty()) {
             Toast.makeText(this, "No orders to cancel", Toast.LENGTH_SHORT).show();

@@ -16,14 +16,20 @@ import java.util.ArrayList;
 /**
  * Displays available pizzas using RecyclerView.
  * Allows user to add pizzas to the current order.
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
  */
 public class PizzaActivity extends AppCompatActivity implements PizzaAdapter.OnPizzaClickListener {
 
     private RecyclerView recyclerView;
     private PizzaAdapter adapter;
     private ArrayList<PizzaItem> pizzaList;
-    private Button btnBack; // Back button
+    private Button btnBack;
 
+    /**
+     * Create buttons
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

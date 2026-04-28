@@ -19,20 +19,35 @@ public class Order {
         this.number = nextNumber++;
         this.pizzas = new ArrayList<>();
     }
+    /**
+     * get number method
+     */
     public int getNumber() {
         return number;
     }
+    /**
+     * get pizza method
+     */
     public ArrayList<Pizza> getPizzas() {
         return pizzas;
     }
+    /**
+     * pizza add method
+     */
     public boolean addPizza(Pizza pizza) {
         if (pizza == null) return false;
         pizzas.add(pizza);
         return true;
     }
+    /**
+     * pizza remove method
+     */
     public boolean removePizza(Pizza pizza) {
         return pizzas.remove(pizza);
     }
+    /**
+     * calculates subtotal
+     */
     public double getSubtotal() {
         double total = 0;
         for (Pizza p : pizzas) {
@@ -40,12 +55,21 @@ public class Order {
         }
         return total;
     }
+    /**
+     * get tax method  method
+     */
     public double getTax() {
         return getSubtotal() * 0.06625;
     }
+    /**
+     * get total  method
+     */
     public double getTotal() {
         return getSubtotal() + getTax();
     }
+    /**
+     * toString method
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

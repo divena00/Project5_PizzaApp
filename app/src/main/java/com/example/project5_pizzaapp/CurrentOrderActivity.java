@@ -11,6 +11,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+/**
+ * method for store orders
+ * @author Divena Deshmukh
+ * @author Ishani Rajeshirke
+ */
 
 public class CurrentOrderActivity extends AppCompatActivity {
 
@@ -20,7 +25,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
     private ArrayAdapter<String> adapter;
     private ArrayList<String> pizzaStrings;
-
+    /**
+     * Called when the activity is first created.
+     * Initializes UI components, sets up event listeners,
+     * and loads the current order into the ListView.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +71,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
             Toast.makeText(this, "Pizza removed", Toast.LENGTH_SHORT).show();
         });
     }
-
+    /**
+     * Loads all pizzas from the current order into the ListView.
+     * Converts each Pizza object into a string using toString().
+     * Also refreshes the adapter and updates subtotal, tax, and total.
+     */
     private void loadCurrentOrder() {
         pizzaStrings = new ArrayList<>();
 
@@ -75,7 +88,10 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
         updateTotals();
     }
-
+    /**
+     * Updates the subtotal, tax, and total TextViews.
+     * Retrieves values from the current order and formats them as currency.
+     */
     private void updateTotals() {
         Order order = OrderManager.getInstance().getCurrentOrder();
 
@@ -83,7 +99,13 @@ public class CurrentOrderActivity extends AppCompatActivity {
         textTax.setText(String.format("Tax: $%.2f", order.getTax()));
         textTotal.setText(String.format("Total: $%.2f", order.getTotal()));
     }
-
+    /**
+     * Displays a confirmation dialog to remove a selected pizza.
+     * If the user confirms, the pizza at the given position is removed
+     * from the current order and the ListView is refreshed.
+     *
+     * @param position index of the selected pizza in the list
+     */
     private void showRemoveDialog(int position) {
         new AlertDialog.Builder(this)
                 .setTitle("Remove Pizza")
@@ -102,7 +124,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
-
+    /**
+     * Places the current order into the store orders list.
+     * Checks if the order is empty before placing.
+     *
+     */
     private void placeOrder() {
         Order currentOrder = OrderManager.getInstance().getCurrentOrder();
 
